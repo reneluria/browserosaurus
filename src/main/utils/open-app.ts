@@ -11,10 +11,13 @@ export function openApp(
 ): void {
   const selectedApp = apps[appId]
 
+  urlFixed =
+    appId === 'com.infomaniak.meet' ? url.replace('https://', 'kmeet://') : url
+
   const processedUrlTemplate =
     'urlTemplate' in selectedApp
-      ? selectedApp.urlTemplate.replace(/\{\{URL\}\}/u, url)
-      : url
+      ? selectedApp.urlTemplate.replace(/\{\{URL\}\}/u, urlFixed)
+      : urlFixed
 
   const openArguments: string[] = [
     '-b',
